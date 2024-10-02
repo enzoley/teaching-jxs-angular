@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Pokemon} from "../pokemon";
 
 @Component({
   selector: 'app-my-component',
@@ -8,5 +9,17 @@ import { Component } from '@angular/core';
 export class MyComponentComponent {
 
   id: string = '';
+  selectedPokemon: Pokemon = new Pokemon(0, 'None');
+
+  pokemon = new Pokemon(1, 'Bulbasaur');
+  pokemon2 = new Pokemon(2, 'Ivysaur');
+  pokemon3 = new Pokemon(3, 'Venusaur');
+  pokemon4 = new Pokemon(4, 'Charmander');
+  pokemon5 = new Pokemon(5, 'Charmeleon');
+  pokemon6 = new Pokemon(6, 'Charizard');
+
+  l = [this.pokemon, this.pokemon2, this.pokemon3, this.pokemon4, this.pokemon5, this.pokemon6];
+
+
 
 }

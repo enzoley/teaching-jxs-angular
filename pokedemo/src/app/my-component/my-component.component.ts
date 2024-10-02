@@ -8,8 +8,8 @@ import {Pokemon} from "../pokemon";
 })
 export class MyComponentComponent {
 
-  id: string = '';
-  selectedPokemon: Pokemon = new Pokemon(0, 'None');
+  selectedPokemon: Pokemon = new Pokemon(1, 'Bulbasaur');
+  searchString: string = '';
 
   pokemon = new Pokemon(1, 'Bulbasaur');
   pokemon2 = new Pokemon(2, 'Ivysaur');
@@ -20,6 +20,8 @@ export class MyComponentComponent {
 
   l = [this.pokemon, this.pokemon2, this.pokemon3, this.pokemon4, this.pokemon5, this.pokemon6];
 
-
+  afficherPokemon(){
+    console.log(this.selectedPokemon.name);
+  }
 
 }

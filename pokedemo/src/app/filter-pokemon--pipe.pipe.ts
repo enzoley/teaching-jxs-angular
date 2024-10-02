@@ -5,8 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPokemonPipePipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(pokes: any[], property?: string, searchString?: string): any {
+    if(typeof searchString == 'undefined'){
+      return pokes;
+    }
+    else if (typeof pokes !== 'undefined' && typeof property !== 'undefined') {
+      return pokes.filter((poke) => {
+        return poke[property].toLowerCase().indexOf(searchString.toLowerCase()) !== -1;
+      });
+    } else {
+      return [];
+    }
   }
 
 }

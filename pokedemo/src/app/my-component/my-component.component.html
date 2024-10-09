@@ -1,9 +1,12 @@
 <input [(ngModel)]="searchString" placeholder="Recherche de pokemon">
-<input [(ngModel)]="selectedPokemon.id" placeholder="Enter Pokemon ID">
-<input [(ngModel)]="selectedPokemon.id" readonly>
-<select [(ngModel)]="selectedPokemon">
-  <option *ngFor="let p of l | filterPokemonPipe : 'name' : searchString" [ngValue]="p">{{p.name}}</option>
+<input [(ngModel)]="id" placeholder="Enter Pokemon ID">
+<input [(ngModel)]="id" readonly>
+<select [(ngModel)]="id">
+  <ng-container *ngIf="(l | async) as pokemonList">
+    <option *ngFor="let poke of pokemonList | filterPokemonPipe : 'name' : searchString" [value]="poke.id">
+    {{ poke.name }}
+    </option>
+  </ng-container>
 </select>
-<h2>Le pokemon selectionné est : {{selectedPokemon.name}}</h2>
 <button (click)="afficherPokemon()">Go !</button>
 

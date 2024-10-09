@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
-import {Pokemon} from "../pokemon";
+import { Component, OnInit } from '@angular/core';
+import { Pokemon } from "../pokemon";
+import { AccesPokeAPIService } from "../acces-poke-api.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-component',
   templateUrl: './my-component.component.html',
-  styleUrl: './my-component.component.css'
+  styleUrl: './my-component.component.css',
+  providers: [AccesPokeAPIService]
 })
-export class MyComponentComponent {
+export class MyComponentComponent implements OnInit {
 
-  selectedPokemon: Pokemon = new Pokemon(1, 'Bulbasaur');
+  id : number = 0;
+  selectedPokemon: Pokemon = new Pokemon(0, '');
   searchString: string = '';
 
   pokemon = new Pokemon(1, 'Bulbasaur');
@@ -18,10 +22,15 @@ export class MyComponentComponent {
   pokemon5 = new Pokemon(5, 'Charmeleon');
   pokemon6 = new Pokemon(6, 'Charizard');
 
-  l = [this.pokemon, this.pokemon2, this.pokemon3, this.pokemon4, this.pokemon5, this.pokemon6];
+  l: Observable<Pokemon[]> | undefined;
 
-  afficherPokemon(){
-    console.log(this.selectedPokemon.name);
+  constructor(private accesPokeAPIService: AccesPokeAPIService) {}
+
+  ngOnInit(): void {
+    this.l = this.accesPokeAPIService.getPokemon();
   }
 
+  afficherPokemon() {
+    console.log(this.id);
+  }
 }
